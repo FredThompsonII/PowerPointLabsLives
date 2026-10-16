@@ -1,0 +1,3 @@
+[submodule "upstream/PowerPointLabs"]
+	path = upstream/PowerPointLabs
+	url = https://github.com/PowerPointLabs/PowerPointLabs.git
