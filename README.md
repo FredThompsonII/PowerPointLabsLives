@@ -1,5 +1,6 @@
 # PowerPointLabsLives
 PowerPointLabs - created by students at the National University of Singapore - new installer
+
 Home Page: https://www.comp.nus.edu.sg/~pptlabs/
 
 The typical PowerPoint presentation isn't very interesting. Walls of text or bullet points, with few visuals - it's no wonder audiences find it hard to pay attention.
