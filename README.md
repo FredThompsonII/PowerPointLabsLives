@@ -1,3 +1,83 @@
+# PowerPointLabs local installer creator
+
+Extract this package into a new folder and run **build.bat** as your normal
+Windows user. Internet access is required to build. Open the resulting
+`PowerPointLabs_6.1.0.2_Setup_XXXXXXXX.msi`, approve its displayed publisher
+certificate, then start desktop PowerPoint. Close PowerPoint before installing,
+repairing, upgrading or uninstalling. Install using the Windows account that
+will run PowerPoint. No administrator elevation is needed for this per-user MSI.
+
+The supplied add-on is named **PowerPointLabs 6.1.0.2** internally. Its filenames,
+assembly names and Office registration retain that name.
+
+## Contents and operation
+
+One executable source file, `build.bat`, contains the PowerShell build logic,
+WiX installer definition and necessary certificate installation/rollback code.
+There are no tests, probes, monitoring, timing, analysis or evidence frameworks.
+The 18 application files are the original payload, not builder scaffolding.
+`TestInterface.dll` is a dependency of the supplied application and is retained.
+
+The batch downloads a private .NET 8 SDK, Microsoft Mage 10.0.0 and WiX 3.14.1
+into a unique temporary folder. It deletes that folder, including downloaded
+archives and build intermediates, on completion or a handled failure. A forced
+termination or power loss can leave that temporary folder behind. It does not
+uninstall system runtimes or alter tool caches created by previous versions.
+Each build therefore downloads its own build tools again.
+
+Original application files and Signing are preserved. The MSI receives flat,
+colocated manifests, DLLs and configuration. The original post-action assembly
+reference is corrected from PostInstall to PowerPointLabs. Mage signs the
+application manifest, updates its deployment reference and hash, then signs the
+deployment manifest with the same certificate used to sign the MSI. The original
+DLLs are not recompiled or re-signed.
+
+## Signing
+
+Choose one:
+
+* Leave Signing empty: generate a reusable 3072-bit RSA code-signing certificate.
+  Save its encrypted private key as `Signing/CodeSigning.pfx` and its password
+  as `Signing/CodeSigning.password.dpapi`, protected by the current Windows
+  account on this computer. These are reused on subsequent builds.
+* Supply `Signing/CodeSigning.pfx`: enter its password when prompted. When
+  replacing a generated PFX, move its old `.password.dpapi` file out of Signing.
+* Supply `Signing/CertificateThumbprint.txt`: one certificate thumbprint, for an
+  accessible RSA code-signing private key in the current user's Personal store.
+
+Do not supply both PFX and thumbprint. Generated certificates expire after three
+years; this local signing process does not use an online timestamp service.
+Preserve your key material securely. Generated DPAPI passwords are not portable
+to another Windows account/computer. Private keys are never included in the MSI
+and are ignored by Git. A supplied organization certificate requires its issuing
+CA chain to be trusted on the destination machine.
+
+The installer displays the exact certificate thumbprint and requires consent
+before adding the public certificate to Current User Trusted Publishers. For a
+self-signed certificate, it also adds it to Current User Trusted Root. It preserves
+pre-existing trust, rolls back changes if installation fails and removes only
+trust it owns on uninstall. Trust applies to other code signed by this key too.
+Office security policies are not changed. Organization policy may prohibit local
+publisher trust or the add-in even with a valid signature.
+
+## Requirements
+
+Windows 10/11, Windows PowerShell 5.1 and desktop PowerPoint. The destination
+also needs .NET Framework 4.5 or later and Microsoft VSTO Runtime 2010 or later.
+The temporary modern .NET SDK is a build tool; it does not replace those runtimes.
+The MSI stops with an error if its runtime prerequisites are missing.
+
+This simplified revision has been reviewed locally; Windows MSI installation,
+certificate-store behavior and launching PowerPoint still require execution on
+Windows. No completed end-to-end Windows run is claimed.
+
+## Licensing and source
+
+`build.bat` and the creator documentation are MIT licensed; see LICENSE.
+The supplied PowerPointLabs application retains its GPLv2 license and third-party
+components retain their existing licenses. See GPL-2.0.txt. The MIT license does
+not relicense the bundled application or third-party DLLs.
+
 # PowerPointLabsLives
 PowerPointLabs - created by students at the National University of Singapore - new installer
 
@@ -18,5 +98,12 @@ git submodule update --init --recursive
 ```
 
 See [SOURCE_PROVENANCE.md](SOURCE_PROVENANCE.md) for the exact revision, source attribution, and reproducibility commands.
+Source provenance supplied with the original package:
+https://github.com/FredThompsonII/PowerPointLabsLives/tree/79e6be4882b736a0cb4828e06a96286de9b3aed6
+This source reference is provenance, not a claim that it reproduces the supplied
+binaries. Do not publish generated signing material or locally built installers
+to GitHub.
 
-This repository is a repackaging effort, not the original PowerPointLabs project. The original software remains licensed under GPLv2.
+Microsoft deployment and signing references:
+https://learn.microsoft.com/en-us/visualstudio/vsto/deploying-a-vsto-solution-by-using-windows-installer
+https://learn.microsoft.com/en-us/dotnet/framework/tools/mage-exe-manifest-generation-and-editing-tool
