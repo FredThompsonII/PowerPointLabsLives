@@ -1,4 +1,44 @@
-# PowerPointLabs local installer creator
+# PowerPointLabsLives
+PowerPointLabs - created by students at the National University of Singapore - new installer
+Home Page: https://www.comp.nus.edu.sg/~pptlabs/
+
+The typical PowerPoint presentation isn't very interesting. Walls of text or bullet points, with few visuals - it's no wonder audiences find it hard to pay attention.
+
+Your slides don't have to be this way, and it doesn't take a whole lot of effort to make them better.
+
+PowerPointLabs is an open source project based in the National University of Singapore. It makes creating engaging PowerPoint presentations easy.
+
+Fancy animations, simplified - Animation Lab makes multi-step multi-object custom animations a breeze.
+
+Zoom and pan with ease - Easily zoom in on and pan between parts of your slides with Zoom Lab.
+
+Narrate your speaker notes - Narrations Lab creates audio explanations from your speaker notes - perfect for self-learning materials.
+
+Caption with a click - Want subtitles with your narration? Captions Lab makes it a one-click process.
+
+Point-by-point highlights - Highlight individual bullet points to show what you're describing with Highlight Lab.
+
+Special effects without special software - Draw attention to a part of the slide with a spotlight or blurring out the rest. Effects Lab has you covered.
+
+Tweak positions to match your layout - Use Positions Lab to perfectly position shapes to create the exact layout you want.
+
+Resize with precision - Resize shapes to match other shapes or to the size you want using Resize Lab.
+
+Match colors, perfectly - Colors Lab makes picking colors a snap, even from outside PowerPoint.
+
+Sync just the styles you want - Sync Lab can copy selected styles from one object to other objects.
+
+Save the shapes, and your effort - Add shapes or other elements to Shapes Lab, and reuse them easily in any presentation.
+
+Cut out custom shapes - Need just part of an image? Crop Lab lets you cut it in the exact shape you want, no image editor necessary.
+
+Paste with more control - Replace an image while preserving its animations. Paste Lab provides many different new ways for you to paste objects in slides.
+
+Add timers to guide in-presentation activities - Want your audience to do an activity for 10 seconds? Timer Lab lets you create visual timers for your slides.
+
+Create roadmaps for long presentations - Need a roadmap for your presentation? Agenda Lab builds one with a single click.
+
+Create picture slides the easy way - No more long hours of tweaking picture slides. With Picture Slides Lab, all you need to do is compare pictures, compare styles and choose the one you like!
 
 Extract this package into a new folder and run **build.bat** as your normal
 Windows user. Internet access is required to build. Open the resulting
@@ -77,9 +117,6 @@ Windows. No completed end-to-end Windows run is claimed.
 The supplied PowerPointLabs application retains its GPLv2 license and third-party
 components retain their existing licenses. See GPL-2.0.txt. The MIT license does
 not relicense the bundled application or third-party DLLs.
-
-# PowerPointLabsLives
-PowerPointLabs - created by students at the National University of Singapore - new installer
 
 ## Pinned original source
 
