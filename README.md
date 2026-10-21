@@ -108,9 +108,9 @@ also needs .NET Framework 4.5 or later and Microsoft VSTO Runtime 2010 or later.
 The temporary modern .NET SDK is a build tool; it does not replace those runtimes.
 The MSI stops with an error if its runtime prerequisites are missing.
 
-This simplified revision has been reviewed locally; Windows MSI installation,
-certificate-store behavior and launching PowerPoint still require execution on
-Windows. No completed end-to-end Windows run is claimed.
+## Warranty
+
+Absolutely no warranty or guarantee of any sort. It works for me. 
 
 ## Licensing and source
 
